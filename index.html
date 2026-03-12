@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anukriti Singh — Science Teacher Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest: #1a3a2a;
+            --forest-light: #264d3a;
+            --sage: #8ba888;
+            --sage-light: #a8c4a5;
+            --cream: #f5f0e8;
+            --cream-dark: #ebe4d8;
+            --gold: #c9a84c;
+            --gold-light: #d4b96a;
+            --charcoal: #2d2d2d;
+            --charcoal-light: #4a4a4a;
+            --white: #faf8f4;
+            --border: rgba(26, 58, 42, 0.12);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Source Sans 3', Georgia, serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            padding: 1rem 3rem;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(245, 240, 232, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+        nav.scrolled { padding: 0.6rem 3rem; box-shadow: 0 4px 30px rgba(26,58,42,0.08); }
+        .nav-logo {
+            font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600;
+            color: var(--forest); letter-spacing: 0.02em; text-decoration: none;
+        }
+        .nav-logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--charcoal-light); font-size: 0.85rem;
+            font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+            position: relative; transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1.5px; background: var(--gold); transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--forest); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-hamburger {
+            display: none; flex-direction: column; gap: 5px;
+            cursor: pointer; background: none; border: none; padding: 4px;
+        }
+        .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--forest); transition: all 0.3s; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 50%, #e8dece 100%);
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -20%; right: -10%;
+            width: 70vw; height: 70vw; border-radius: 50%;
+            background: radial-gradient(circle, rgba(139,168,136,0.15) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -30%; left: -15%;
+            width: 50vw; height: 50vw; border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 60%);
+            animation: pulse 10s ease-in-out infinite reverse;
+        }
+        @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.05);opacity:0.8} }
+
+        .hero-botanical { position: absolute; top: 10%; right: 4%; opacity: 0.05; pointer-events: none; font-size: 20rem; color: var(--forest); line-height: 1; }
+
+        .hero-content {
+            position: relative; z-index: 2; padding: 0 8vw; max-width: 900px;
+            animation: heroReveal 1.2s ease-out;
+        }
+        @keyframes heroReveal { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: var(--forest); color: var(--cream);
+            padding: 0.45rem 1.2rem; border-radius: 30px;
+            font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+            text-transform: uppercase; margin-bottom: 2rem;
+            animation: heroReveal 1.2s ease-out 0.2s both;
+        }
+        .hero-tag::before {
+            content: ''; width: 6px; height: 6px; background: var(--gold);
+            border-radius: 50%; animation: blink 2s ease-in-out infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6.5vw, 5.5rem); font-weight: 700;
+            color: var(--forest); line-height: 1.05; margin-bottom: 0.3em;
+            animation: heroReveal 1.2s ease-out 0.3s both;
+        }
+        .hero h1 em { font-style: italic; color: var(--gold); font-weight: 500; }
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--charcoal-light);
+            font-weight: 400; font-style: italic; margin-bottom: 2rem;
+            animation: heroReveal 1.2s ease-out 0.5s both;
+        }
+        .hero-details {
+            display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem;
+            animation: heroReveal 1.2s ease-out 0.6s both;
+        }
+        .hero-detail { font-size: 0.88rem; color: var(--charcoal-light); display: flex; align-items: center; gap: 0.5rem; }
+        .hero-detail svg { width: 16px; height: 16px; fill: var(--sage); }
+        .hero-cta { display: inline-flex; gap: 1rem; animation: heroReveal 1.2s ease-out 0.7s both; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: var(--forest); color: var(--cream);
+            padding: 0.9rem 2rem; border: none; border-radius: 4px;
+            font-family: 'Source Sans 3', sans-serif; font-size: 0.88rem;
+            font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+            cursor: pointer; text-decoration: none; transition: all 0.35s ease;
+            position: relative; overflow: hidden;
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover { background: var(--forest-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(26,58,42,0.2); }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: transparent; color: var(--forest);
+            padding: 0.9rem 2rem; border: 1.5px solid var(--forest); border-radius: 4px;
+            font-family: 'Source Sans 3', sans-serif; font-size: 0.88rem;
+            font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+            cursor: pointer; text-decoration: none; transition: all 0.35s ease;
+        }
+        .btn-secondary:hover { background: var(--forest); color: var(--cream); transform: translateY(-2px); }
+
+        .hero-scroll {
+            position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
+            z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+            animation: heroReveal 1.2s ease-out 1s both;
+        }
+        .hero-scroll span { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage); font-weight: 500; }
+        .scroll-line { width: 1px; height: 40px; background: var(--sage); position: relative; overflow: hidden; }
+        .scroll-line::after {
+            content: ''; position: absolute; top: -100%; left: 0;
+            width: 100%; height: 50%; background: var(--gold);
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+        @keyframes scrollDown { 0%{top:-50%} 100%{top:150%} }
+
+        /* SECTIONS COMMON */
+        section { padding: 6rem 8vw; position: relative; }
+        .section-header { margin-bottom: 4rem; }
+        .section-label {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 300;
+            letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage);
+            margin-bottom: 0.8rem; display: flex; align-items: center; gap: 1rem;
+        }
+        .section-label::before { content: ''; width: 30px; height: 1px; background: var(--sage); }
+        .section-title {
+            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600; color: var(--forest); line-height: 1.15;
+        }
+        .section-title em { font-style: italic; color: var(--gold); font-weight: 400; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25,0.46,0.45,0.94); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ABOUT */
+        .about { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        .about-text { font-size: 1.05rem; color: var(--charcoal-light); line-height: 1.85; }
+        .about-text p + p { margin-top: 1.2rem; }
+        .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .highlight-card {
+            background: var(--cream); padding: 1.8rem; border-radius: 6px;
+            border: 1px solid var(--border); transition: all 0.35s ease;
+            position: relative; overflow: hidden;
+        }
+        .highlight-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 3px; height: 100%; background: var(--gold);
+            transform: scaleY(0); transform-origin: bottom; transition: transform 0.4s ease;
+        }
+        .highlight-card:hover::before { transform: scaleY(1); }
+        .highlight-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(26,58,42,0.06); }
+        .highlight-number { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--forest); line-height: 1; margin-bottom: 0.3rem; }
+        .highlight-label { font-size: 0.82rem; color: var(--sage); font-weight: 500; letter-spacing: 0.04em; }
+
+        /* EXPERIENCE */
+        .experience { background: var(--cream); }
+        .timeline { position: relative; padding-left: 3rem; }
+        .timeline::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 1px; height: 100%;
+            background: linear-gradient(to bottom, var(--gold), var(--sage), transparent);
+        }
+        .timeline-item { position: relative; padding-bottom: 3.5rem; }
+        .timeline-item:last-child { padding-bottom: 0; }
+        .timeline-dot {
+            position: absolute; left: -3rem; top: 0.3rem;
+            width: 11px; height: 11px; background: var(--cream);
+            border: 2px solid var(--gold); border-radius: 50%;
+            transform: translateX(-5px); z-index: 1;
+        }
+        .timeline-item:first-child .timeline-dot { background: var(--gold); box-shadow: 0 0 0 4px rgba(201,168,76,0.2); }
+        .timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 400; color: var(--sage); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+        .timeline-role { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 600; color: var(--forest); margin-bottom: 0.2rem; }
+        .timeline-org { font-size: 1rem; color: var(--gold); font-weight: 500; margin-bottom: 1rem; }
+        .timeline-desc { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .timeline-desc li { position: relative; padding-left: 1.4rem; font-size: 0.92rem; color: var(--charcoal-light); line-height: 1.65; }
+        .timeline-desc li::before { content: ''; position: absolute; left: 0; top: 0.65em; width: 5px; height: 5px; background: var(--sage); border-radius: 50%; }
+        .timeline-extra { margin-top: 1rem; padding: 1rem 1.4rem; background: rgba(139,168,136,0.08); border-left: 2px solid var(--sage-light); border-radius: 0 4px 4px 0; }
+        .timeline-extra-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--forest); margin-bottom: 0.5rem; }
+        .timeline-extra p { font-size: 0.88rem; color: var(--charcoal-light); line-height: 1.6; }
+
+        /* EDUCATION */
+        .education { background: var(--forest); color: var(--cream); position: relative; overflow: hidden; }
+        .education::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 60vw; height: 60vw; border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 60%);
+        }
+        .education .section-label { color: var(--sage-light); }
+        .education .section-label::before { background: var(--sage-light); }
+        .education .section-title { color: var(--cream); }
+        .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .edu-card {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px; padding: 2rem; transition: all 0.35s ease; position: relative;
+        }
+        .edu-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-3px); }
+        .edu-card-year { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.6rem; }
+        .edu-card-degree { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 600; color: var(--cream); margin-bottom: 0.4rem; line-height: 1.3; }
+        .edu-card-institution { font-size: 0.88rem; color: var(--sage-light); margin-bottom: 0.6rem; line-height: 1.5; }
+        .edu-card-score { display: inline-block; padding: 0.25rem 0.8rem; background: rgba(201,168,76,0.15); border-radius: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--gold-light); letter-spacing: 0.05em; }
+
+        /* CERTIFICATIONS */
+        .certifications { background: var(--white); border-top: 1px solid var(--border); }
+        .cert-list { display: flex; flex-direction: column; gap: 1.2rem; }
+        .cert-item {
+            display: flex; align-items: flex-start; gap: 1.5rem;
+            padding: 1.5rem 2rem; background: var(--cream); border-radius: 6px;
+            border: 1px solid var(--border); transition: all 0.35s ease;
+        }
+        .cert-item:hover { transform: translateX(6px); border-color: var(--gold); }
+        .cert-icon {
+            flex-shrink: 0; width: 44px; height: 44px; background: var(--forest);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        }
+        .cert-icon svg { width: 20px; height: 20px; fill: var(--gold); }
+        .cert-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; color: var(--forest); margin-bottom: 0.2rem; }
+        .cert-detail { font-size: 0.85rem; color: var(--charcoal-light); line-height: 1.55; }
+        .cert-score { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--gold); margin-top: 0.3rem; }
+
+        /* SKILLS */
+        .skills { background: var(--cream); }
+        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+        .skill-tag {
+            display: flex; align-items: center; gap: 0.8rem;
+            padding: 1.1rem 1.4rem; background: var(--white);
+            border: 1px solid var(--border); border-radius: 4px;
+            font-size: 0.88rem; color: var(--charcoal); font-weight: 450;
+            transition: all 0.35s ease; cursor: default;
+        }
+        .skill-tag::before { content: ''; width: 8px; height: 8px; border-radius: 2px; background: var(--sage); flex-shrink: 0; transition: all 0.35s ease; }
+        .skill-tag:hover { border-color: var(--forest); background: var(--forest); color: var(--cream); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,58,42,0.15); }
+        .skill-tag:hover::before { background: var(--gold); transform: rotate(45deg); }
+
+        /* ACHIEVEMENTS */
+        .achievements { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .achievements-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .achievement-card {
+            padding: 2rem; position: relative; background: var(--cream);
+            border-radius: 6px; border: 1px solid var(--border); transition: all 0.35s ease;
+        }
+        .achievement-card::before {
+            content: '\201C'; position: absolute; top: 0.5rem; right: 1.5rem;
+            font-family: 'Playfair Display', serif; font-size: 4rem;
+            color: var(--gold); opacity: 0.2; line-height: 1;
+        }
+        .achievement-card:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(26,58,42,0.08); }
+        .achievement-card p { font-size: 0.95rem; color: var(--charcoal-light); line-height: 1.7; position: relative; z-index: 1; }
+
+        /* PROFESSIONAL DEVELOPMENT */
+        .pro-dev { background: var(--cream); }
+        .pd-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+        .pd-item { padding: 1.5rem 1.8rem; border-left: 3px solid var(--sage); background: var(--white); border-radius: 0 6px 6px 0; transition: all 0.35s ease; }
+        .pd-item:hover { border-left-color: var(--gold); transform: translateX(4px); }
+        .pd-item p { font-size: 0.92rem; color: var(--charcoal-light); line-height: 1.65; }
+        .pd-item .pd-org { font-size: 0.78rem; color: var(--sage); font-weight: 500; margin-top: 0.4rem; font-style: italic; }
+
+        /* CONTACT */
+        .contact {
+            background: var(--forest); color: var(--cream); text-align: center;
+            padding: 6rem 8vw 3rem; position: relative; overflow: hidden;
+        }
+        .contact::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+        .contact .section-label { justify-content: center; color: var(--sage-light); }
+        .contact .section-label::before { background: var(--sage-light); }
+        .contact .section-title { color: var(--cream); margin-bottom: 2.5rem; }
+        .contact-info { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 3rem; }
+        .contact-item { display: flex; align-items: center; gap: 0.8rem; font-size: 0.95rem; color: var(--sage-light); text-decoration: none; transition: color 0.3s; }
+        .contact-item:hover { color: var(--gold); }
+        .contact-item svg { width: 18px; height: 18px; fill: var(--gold); }
+        .footer-line {
+            margin-top: 4rem; padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer-line p { font-size: 0.78rem; color: rgba(168,196,165,0.5); }
+        .footer-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; color: rgba(168,196,165,0.4); letter-spacing: 0.1em; text-transform: uppercase; }
+        .footer-badge span { width: 5px; height: 5px; background: var(--gold); border-radius: 50%; opacity: 0.5; }
+
+        /* MOLECULE DIVIDER */
+        .molecule-divider { display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 1rem 0; }
+        .molecule-divider span { width: 5px; height: 5px; background: var(--sage); border-radius: 50%; opacity: 0.4; }
+        .molecule-divider span:nth-child(2) { width: 7px; height: 7px; background: var(--gold); opacity: 0.6; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .pd-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            nav.scrolled { padding: 0.6rem 1.5rem; }
+            .nav-links {
+                display: none; position: absolute; top: 100%; left: 0; width: 100%;
+                background: rgba(245,240,232,0.98); backdrop-filter: blur(20px);
+                flex-direction: column; gap: 0; padding: 1rem 0;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { display: block; padding: 0.8rem 1.5rem; }
+            .nav-hamburger { display: flex; }
+            section { padding: 4rem 6vw; }
+            .hero-content { padding: 0 6vw; }
+            .hero h1 { font-size: clamp(2.4rem, 8vw, 3.5rem); }
+            .hero-cta { flex-direction: column; gap: 0.8rem; }
+            .hero-botanical { display: none; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .achievements-grid { grid-template-columns: 1fr; }
+            .about-highlights { grid-template-columns: 1fr 1fr; }
+            .contact-info { flex-direction: column; align-items: center; gap: 1.5rem; }
+            .footer-line { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .about-highlights { grid-template-columns: 1fr; }
+            .hero-details { flex-direction: column; gap: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <a href="#hero" class="nav-logo">A<span>.</span>Singh</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-botanical" aria-hidden="true">
+            <svg viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 380 Q100 200 60 100 Q40 50 80 20 Q100 5 120 20 Q160 50 140 100 Q100 200 100 380Z" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.6"/>
+                <path d="M100 300 Q60 250 30 260 Q10 265 20 240 Q35 210 70 230 Q100 250 100 300Z" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.4"/>
+                <path d="M100 250 Q140 200 170 210 Q190 215 180 190 Q165 160 130 180 Q100 200 100 250Z" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.4"/>
+                <path d="M100 200 Q70 160 40 165 Q25 168 30 145 Q42 120 70 135 Q100 155 100 200Z" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.3"/>
+                <line x1="100" y1="380" x2="100" y2="50" stroke="currentColor" stroke-width="0.3" opacity="0.3"/>
+            </svg>
+        </div>
+        <div class="hero-content">
+            <div class="hero-tag">Available Immediately</div>
+            <h1>Anukriti<br><em>Singh</em></h1>
+            <p class="hero-subtitle">Science Teacher &mdash; B.Sc. Life Science, M.Sc. Environmental Science, B.Ed.</p>
+            <div class="hero-details">
+                <div class="hero-detail">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Dubai, UAE
+                </div>
+                <div class="hero-detail">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    anukriti.singh.7@gmail.com
+                </div>
+                <div class="hero-detail">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    +971 528 905 390
+                </div>
+            </div>
+            <div class="hero-cta">
+                <a href="#contact" class="btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    Get in Touch
+                </a>
+                <a href="#experience" class="btn-secondary">
+                    View Experience
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="section-header reveal">
+            <div class="section-label">01 &mdash; About</div>
+            <h2 class="section-title">Inspiring the Next Generation<br>of <em>Scientific Thinkers</em></h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <p>Results-driven Science Teacher with 7+ years of experience in CBSE English-medium schools, teaching Science (Classes V&ndash;VIII) and Biology and Chemistry (Classes IX&ndash;X), including tenure at Army Public School ASC C &amp; C, Bengaluru as TGT Science.</p>
+                <p>Demonstrated expertise in curriculum planning, lesson design, classroom management, student assessment, differentiated instruction, and inquiry-based learning. Experienced in class coordination, house activities, examinations, and school administrative duties.</p>
+                <p>Skilled in integrating educational technology and modern pedagogies such as flipped classrooms and art-integrated learning to enhance student engagement and achievement. Currently based in Dubai and seeking a teaching position in a reputed school committed to academic excellence and holistic development.</p>
+            </div>
+            <div class="about-highlights reveal">
+                <div class="highlight-card">
+                    <div class="highlight-number">7+</div>
+                    <div class="highlight-label">Years of Teaching</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-number">V–X</div>
+                    <div class="highlight-label">Classes Taught</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-number">CTET</div>
+                    <div class="highlight-label">Qualified TGT Level</div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-number">3</div>
+                    <div class="highlight-label">Schools &amp; Institutions</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience" id="experience">
+        <div class="section-header reveal">
+            <div class="section-label">02 &mdash; Experience</div>
+            <h2 class="section-title">A Journey of <em>Teaching Excellence</em></h2>
+        </div>
+        <div class="timeline reveal">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">April 2021 &ndash; January 2026</div>
+                <div class="timeline-role">TGT Science (Regular)</div>
+                <div class="timeline-org">Army Public School ASC C &amp; C, Bangalore</div>
+                <ul class="timeline-desc">
+                    <li>Taught Science in classes VII&ndash;VIII and Biology &amp; Chemistry in classes IX&ndash;X following NCERT/CBSE curriculum</li>
+                    <li>Served as class teacher for classes VII, VIII, IX and X</li>
+                    <li>Conducted interactive lessons using PPTs, 3D models, and digital simulations</li>
+                    <li>Designed remedial plans to support struggling learners</li>
+                    <li>Supervised art-integrated and interdisciplinary projects for grades 9&ndash;10</li>
+                    <li>Contributed to school inspection reports, lesson plans, and syllabus reviews</li>
+                    <li>Conducted CPD workshops for teachers in 2021 and 2025</li>
+                    <li>Organized Science exhibitions, environmental awareness programs, and lab activities</li>
+                </ul>
+                <div class="timeline-extra">
+                    <div class="timeline-extra-title">Additional Responsibilities</div>
+                    <p><strong>Class Coordinator &ndash; Class IX (2025&ndash;26):</strong> Oversaw academic progress, coordinated meetings, managed pre-board registration, academic planning and ensured timely submission of reports.</p>
+                    <p style="margin-top:0.5rem"><strong>House Mistress (2024&ndash;25):</strong> Led a school house, organized CCA activities including academic, cultural, and sports events, encouraging teamwork and leadership.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">March 2019 &ndash; March 2020</div>
+                <div class="timeline-role">TGT Science Teacher</div>
+                <div class="timeline-org">Rukmini Devi Public School, Rohini, Delhi</div>
+                <ul class="timeline-desc">
+                    <li>Taught Science to Classes V, VI, VII, and VIII in alignment with CBSE curriculum</li>
+                    <li>Served as class teacher for Class V</li>
+                    <li>Designed and delivered inquiry-based and activity-oriented lessons</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">April 2015 &ndash; May 2016</div>
+                <div class="timeline-role">TGT Science Teacher</div>
+                <div class="timeline-org">Siddhant World School, Gomti Nagar, Lucknow</div>
+                <ul class="timeline-desc">
+                    <li>Taught Science to Classes V&ndash;VIII in accordance with CBSE curriculum standards</li>
+                    <li>Prepared students for national-level Science Olympiads</li>
+                    <li>Served as School Coordinator for Science Olympiad</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">May 2018 &ndash; January 2019</div>
+                <div class="timeline-role">Intern &mdash; Tiger Monitoring Programme</div>
+                <div class="timeline-org">World Wide Fund for Nature (WWF), Terai Arc Landscape, U.P. India</div>
+                <ul class="timeline-desc">
+                    <li>Worked on Tiger Census 2018 for tiger monitoring and conservation efforts</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="education" id="education">
+        <div class="section-header reveal">
+            <div class="section-label">03 &mdash; Education</div>
+            <h2 class="section-title">Academic <em>Foundation</em></h2>
+        </div>
+        <div class="edu-grid reveal">
+            <div class="edu-card">
+                <div class="edu-card-year">2018</div>
+                <div class="edu-card-degree">M.Sc. Environmental Science</div>
+                <div class="edu-card-institution">Department of Botany, University of Lucknow, Uttar Pradesh</div>
+                <div class="edu-card-score">74.45%</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-card-year">2015</div>
+                <div class="edu-card-degree">Bachelor of Education (B.Ed.)</div>
+                <div class="edu-card-institution">Amity Institute of Education, Amity University, Lucknow</div>
+                <div class="edu-card-score">CGPA: 8.35 (83.5%)</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-card-year">2014</div>
+                <div class="edu-card-degree">B.Sc. Life Sciences</div>
+                <div class="edu-card-institution">Gargi College, University of Delhi, New Delhi (MOFA Attested)</div>
+                <div class="edu-card-score">72.51%</div>
+            </div>
+            <div class="edu-card">
+                <div class="edu-card-year">2010 &amp; 2008</div>
+                <div class="edu-card-degree">Senior Secondary &amp; Secondary (CBSE)</div>
+                <div class="edu-card-institution">Mount Carmel Convent School, Lucknow</div>
+                <div class="edu-card-score">Class XII: 73.40% | Class X: 68.50%</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="certifications" id="certifications">
+        <div class="section-header reveal">
+            <div class="section-label">04 &mdash; Certifications</div>
+            <h2 class="section-title">Professional <em>Qualifications</em></h2>
+        </div>
+        <div class="cert-list reveal">
+            <div class="cert-item">
+                <div class="cert-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                </div>
+                <div>
+                    <div class="cert-name">Central Teacher Eligibility Test (CTET)</div>
+                    <div class="cert-detail">Qualified at TGT Level &mdash; Conducted by CBSE, September 2015</div>
+                    <div class="cert-score">Score: 67%</div>
+                </div>
+            </div>
+            <div class="cert-item">
+                <div class="cert-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                </div>
+                <div>
+                    <div class="cert-name">AWES CSB &mdash; TGT Biology</div>
+                    <div class="cert-detail">Army Welfare Education Society Combined Screening Board, 2020</div>
+                    <div class="cert-score">Part A: 55.56% | Part B: 51.67%</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="skills" id="skills">
+        <div class="section-header reveal">
+            <div class="section-label">05 &mdash; Skills</div>
+            <h2 class="section-title">Teaching <em>Competencies</em></h2>
+        </div>
+        <div class="skills-grid reveal">
+            <div class="skill-tag">CBSE Curriculum (Classes V&ndash;X)</div>
+            <div class="skill-tag">Biology &amp; Chemistry Instruction</div>
+            <div class="skill-tag">Lesson Planning &amp; Curriculum Mapping</div>
+            <div class="skill-tag">Inquiry-Based Learning</div>
+            <div class="skill-tag">Classroom Management</div>
+            <div class="skill-tag">Differentiated Instruction</div>
+            <div class="skill-tag">Student Assessment &amp; Tracking</div>
+            <div class="skill-tag">Student Mentoring</div>
+            <div class="skill-tag">Parent Communication</div>
+            <div class="skill-tag">Art-Integrated Projects</div>
+            <div class="skill-tag">Educational Technology</div>
+            <div class="skill-tag">Flipped Classroom Strategy</div>
+            <div class="skill-tag">Science Lab Management</div>
+            <div class="skill-tag">School Documentation</div>
+            <div class="skill-tag">CPD Workshops &amp; Training</div>
+            <div class="skill-tag">Science Event Coordination</div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section class="achievements" id="achievements">
+        <div class="section-header reveal">
+            <div class="section-label">06 &mdash; Achievements</div>
+            <h2 class="section-title">Recognition &amp; <em>Impact</em></h2>
+        </div>
+        <div class="achievements-grid reveal">
+            <div class="achievement-card">
+                <p>Recognized for <strong>Exemplary Lesson Plan Design</strong> during internal school inspection at Army Public School.</p>
+            </div>
+            <div class="achievement-card">
+                <p>Implemented <strong>Remedial &amp; Enrichment Program</strong> that significantly improved student performance across multiple classes.</p>
+            </div>
+            <div class="achievement-card">
+                <p>Successfully coordinated <strong>Science Fair 2024</strong> where students won inter-school recognition for their projects.</p>
+            </div>
+            <div class="achievement-card">
+                <p>Commended for effective coordination and leadership as <strong>House Mistress and Class Coordinator</strong>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFESSIONAL DEVELOPMENT -->
+    <section class="pro-dev" id="prodev">
+        <div class="section-header reveal">
+            <div class="section-label">07 &mdash; Growth</div>
+            <h2 class="section-title">Professional <em>Development</em></h2>
+        </div>
+        <div class="pd-grid reveal">
+            <div class="pd-item">
+                <p>Facilitated CPD workshops on Experiential Learning in Science and Flipped Classroom Models</p>
+                <div class="pd-org">Army Public School ASC C &amp; C, Bengaluru (2021, 2025)</div>
+            </div>
+            <div class="pd-item">
+                <p>Teacher Development Programme Workshop In-charge</p>
+                <div class="pd-org">Rukmini Devi Public School, Delhi</div>
+            </div>
+            <div class="pd-item">
+                <p>CBSE Capacity Building Workshop: Financial Literacy &amp; Use of Digital Tools</p>
+                <div class="pd-org">June 2024</div>
+            </div>
+            <div class="pd-item">
+                <p>CBSE Capacity Building Workshop: Happy Classroom &amp; Student Wellbeing</p>
+                <div class="pd-org">CBSE Initiative</div>
+            </div>
+            <div class="pd-item">
+                <p>Training by Project Inclusion: Supporting students with learning difficulties and neurodevelopmental needs</p>
+                <div class="pd-org">Inclusive Education Training</div>
+            </div>
+            <div class="pd-item">
+                <p>Educational Technology Training: Adobe Express, digital content creation, and AI tools for classroom use</p>
+                <div class="pd-org">EdTech Professional Development</div>
+            </div>
+            <div class="pd-item">
+                <p>NIAS Advanced Learning Centre &mdash; Education for the Gifted and Talented Program</p>
+                <div class="pd-org">24th June 2023</div>
+            </div>
+            <div class="pd-item">
+                <p>Award for &ldquo;Excellence in Practice of Teaching&rdquo; from Amity University, Lucknow</p>
+                <div class="pd-org">2015</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="section-header reveal">
+            <div class="section-label">08 &mdash; Contact</div>
+            <h2 class="section-title">Let&rsquo;s <em>Connect</em></h2>
+        </div>
+        <div class="contact-info reveal">
+            <a href="mailto:anukriti.singh.7@gmail.com" class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                anukriti.singh.7@gmail.com
+            </a>
+            <a href="tel:+971528905390" class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                +971 528 905 390
+            </a>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Discovery Garden, Dubai, UAE
+            </div>
+        </div>
+        <div class="reveal">
+            <p style="font-size:0.92rem;color:var(--sage-light);max-width:500px;margin:0 auto;">Languages: English, Hindi &nbsp;|&nbsp; Curriculum: CBSE (open to British curriculum) &nbsp;|&nbsp; Visa: Spouse Visa</p>
+        </div>
+        <div class="footer-line">
+            <p>&copy; 2026 Anukriti Singh. All rights reserved.</p>
+            <div class="footer-badge">
+                <span></span>
+                Portfolio
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Nav scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        // Reveal on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        reveals.forEach(el => revealObserver.observe(el));
+
+        // Staggered skill tags
+        document.querySelectorAll('.skill-tag').forEach((tag, i) => {
+            tag.style.transitionDelay = `${i * 0.03}s`;
+        });
+    </script>
+</body>
+</html>
